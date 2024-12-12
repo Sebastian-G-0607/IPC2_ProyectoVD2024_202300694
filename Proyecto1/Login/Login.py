@@ -1,5 +1,7 @@
 from tkinter import Tk, Button, Label, Entry, messagebox, Frame
 from Modulo_admin.moduloAdmin import Administrador
+from Modulo_solicitante.moduloSolicitante import Solicitante
+from BBDD import BBDD
 
 class Login(Frame):
 
@@ -7,6 +9,7 @@ class Login(Frame):
 
         super().__init__(master, width=700, height=370)
         self.master = master
+        self.master.resizable(False, False)
         self.pack()
         self.create_widgets()
 
@@ -15,7 +18,8 @@ class Login(Frame):
         user = self.box_usuario.get()
         password = self.box_contrasenia.get()
         if user == 'AdminIPC' and password == 'ARTIPC2':
-
+            BBDD.listaArtistas.recorrer()
+            BBDD.listaSolicitantes.recorrer()
             self.master.destroy()
 
             root = Tk()
@@ -33,8 +37,22 @@ class Login(Frame):
             root.wm_title("Administrador")
             admin = Administrador(root)
 
-        elif user == "xxxxxx" :
-            pass
+        elif user == "0" and password == '0' :
+            self.master.destroy()
+            root = Tk()
+
+            ancho_ventana = 800
+            alto_ventana = 500
+
+            x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
+            y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
+
+            posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
+
+            root.geometry(posicion)
+
+            root.wm_title("Solicitante")
+            moduloSolicitante = Solicitante(root, 0)
         else:
             messagebox.showerror(message="El usuario o la contraseña son incorrectos, vuelva a intentar", title="Error")
     
@@ -60,19 +78,3 @@ class Login(Frame):
 
         self.boton_iniciar = Button(self, text="Iniciar sesión", command=self.iniciar_sesion)
         self.boton_iniciar.place(x=305, y=275, width=110, height=35)
-
-root = Tk()
-
-ancho_ventana = 700
-alto_ventana = 370
-
-x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
-y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
-
-posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
-
-root.geometry(posicion)
-
-root.wm_title("Login")
-app = Login(root)
-app.mainloop()

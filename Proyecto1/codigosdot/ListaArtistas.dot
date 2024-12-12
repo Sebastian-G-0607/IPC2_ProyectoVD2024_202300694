@@ -1,0 +1,13 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+            nodo1[label="{ID: ART-001\nPassword: 1234\nNombre: Eduardo Gustavo Fring López\nCorreo: eduardo.gus@gmail.com\nNumero: 3454 3545\nEspecialidades: Pixel Art, animación\nNotas adicionales: Disponible para proyectos urgentes\n|<f1>}"];
+nodo2[label="{ID: ART-002\nPassword: 5678\nNombre: Lucía Beatriz Martínez Cruz\nCorreo: lucia.martinez@gmail.com\nNumero: 1234 5678\nEspecialidades: Ilustración digital, diseño gráfico\nNotas adicionales: Interesada en proyectos de videojuegos\n|<f1>}"];
+nodo3[label="{ID: ART-003\nPassword: 9101\nNombre: Carlos Alberto Jiménez Torres\nCorreo: carlos.jimenez@outlook.com\nNumero: 8765 4321\nEspecialidades: Arte conceptual, storyboard\nNotas adicionales: Experiencia en estudios de animación\n|<f1>}"];
+nodo4[label="{ID: ART-004\nPassword: 1121\nNombre: Sofía Gabriela Rivera Soto\nCorreo: sofia.rivera@yahoo.com\nNumero: 9988 7766\nEspecialidades: Modelado 3D, escultura digital\nNotas adicionales: Disponible para colaboraciones internacionales\n|<f1>}"];
+nodo5[label="{ID: ART-005\nPassword: 3141\nNombre: Diego Alejandro Mendoza Pérez\nCorreo: diego.mendoza@gmail.com\nNumero: 5432 2109\nEspecialidades: Diseño de personajes, arte de cómic\nNotas adicionales: Abierto a proyectos creativos\n|<f1>}"];
+nodo1 -> nodo2;
+nodo2 -> nodo3;
+nodo3 -> nodo4;
+nodo4 -> nodo5;
+}

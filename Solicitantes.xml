@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solicitantes>
+    <solicitante id="IPC-001" pwd="1234">
+        <NombreCompleto>Juan Antonio Perez Silva</NombreCompleto> 
+        <CorreoElectronico>juanperez@gmail.com</CorreoElectronico> 
+        <NumeroTelefono>3436 3436</NumeroTelefono> 
+        <Direccion>Guatemala, ciudad de Guatemala</Direccion> 
+    </solicitante>
+
+    <solicitante id="IPC-002" pwd="5678">
+        <NombreCompleto>Maria Fernanda López Gómez</NombreCompleto> 
+        <CorreoElectronico>maria.lopez@gmail.com</CorreoElectronico> 
+        <NumeroTelefono>1234 5678</NumeroTelefono> 
+        <Direccion>Antigua Guatemala, Sacatepéquez</Direccion> 
+    </solicitante>
+
+    <solicitante id="IPC-003" pwd="9101">
+        <NombreCompleto>Carlos Alberto Méndez Ramírez</NombreCompleto> 
+        <CorreoElectronico>carlos.mendez@hotmail.com</CorreoElectronico> 
+        <NumeroTelefono>8765 4321</NumeroTelefono> 
+        <Direccion>Escuintla, Guatemala</Direccion> 
+    </solicitante>
+
+    <solicitante id="IPC-004" pwd="1121">
+        <NombreCompleto>Daniela Margarita Santos Cruz</NombreCompleto> 
+        <CorreoElectronico>daniela.santos@yahoo.com</CorreoElectronico> 
+        <NumeroTelefono>9988 7766</NumeroTelefono> 
+        <Direccion>Quetzaltenango, Guatemala</Direccion> 
+    </solicitante>
+
+    <solicitante id="IPC-005" pwd="3141">
+        <NombreCompleto>José Manuel Castillo Pérez</NombreCompleto> 
+        <CorreoElectronico>jose.castillo@outlook.com</CorreoElectronico> 
+        <NumeroTelefono>5432 2109</NumeroTelefono> 
+        <Direccion>Chiquimula, Guatemala</Direccion> 
+    </solicitante>
+</solicitantes>
