@@ -32,6 +32,14 @@ class Lista_solicitantes:
                 return actual
             actual = actual.siguiente
 
+    def iniciarSesion(self, user, password):
+        actual = self.primero
+        while actual != None:
+            if user == actual.dato.id and password == actual.dato.password:
+                return True
+            actual = actual.siguiente
+        return False
+
     def graficar(self):
         codigo_graphviz = ''
         codigo_graphviz += '''digraph G {

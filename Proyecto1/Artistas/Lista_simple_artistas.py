@@ -38,6 +38,14 @@ class Lista_artistas:
         while actual != None:
             print(str(actual.dato))
             actual = actual.siguiente
+
+    def iniciarSesion(self, user, password):
+        actual = self.primero
+        while actual != None:
+            if user == actual.dato.id and password == actual.dato.password:
+                return True
+            actual = actual.siguiente
+        return False
     
     def graficar(self):
         codigo_graphviz = ''

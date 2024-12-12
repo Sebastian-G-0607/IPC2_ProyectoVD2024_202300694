@@ -37,12 +37,13 @@ class Login(Frame):
             root.wm_title("Administrador")
             admin = Administrador(root)
 
-        elif user == "0" and password == '0' :
+        elif user.startswith("IPC-") and BBDD.listaSolicitantes.iniciarSesion(user, password):
+            BBDD.usuario_en_sesion = user
             self.master.destroy()
             root = Tk()
 
-            ancho_ventana = 800
-            alto_ventana = 500
+            ancho_ventana = 600
+            alto_ventana = 200
 
             x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
             y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
@@ -51,8 +52,27 @@ class Login(Frame):
 
             root.geometry(posicion)
 
-            root.wm_title("Solicitante")
-            moduloSolicitante = Solicitante(root, 0)
+            root.wm_title("Solicitante " + BBDD.usuario_en_sesion)
+            moduloSolicitante = Solicitante(root)
+
+        elif user.startswith("ART-") and BBDD.listaArtistas.iniciarSesion(user, password):
+            BBDD.usuario_en_sesion = user
+            self.master.destroy()
+            root = Tk()
+
+            ancho_ventana = 600
+            alto_ventana = 200
+
+            x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
+            y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
+
+            posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
+
+            root.geometry(posicion)
+
+            root.wm_title("Artista " + BBDD.usuario_en_sesion)
+            moduloSolicitante = Solicitante(root)
+
         else:
             messagebox.showerror(message="El usuario o la contraseña son incorrectos, vuelva a intentar", title="Error")
     
