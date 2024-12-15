@@ -1,9 +1,8 @@
-class Artista:
+from UsuarioPadre.Usuario import Usuario
+
+class Artista(Usuario):
     def __init__(self, id, pwd, nombre, correo, numero, especialidades, notas):
-        self.id = id
-        self.password = pwd
-        self.nombre = nombre
-        self.correo = correo
+        super().__init__(id, pwd, nombre, correo)
         self.numero = numero
         self.especialidades = especialidades
         self.notas = notas

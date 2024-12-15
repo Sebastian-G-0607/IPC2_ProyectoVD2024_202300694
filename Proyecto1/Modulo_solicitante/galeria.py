@@ -1,5 +1,5 @@
 import importlib
-from tkinter import Button, Tk, Frame, messagebox
+from tkinter import Button, Label, Tk, Frame, messagebox
 from tkinter.font import Font
 from BBDD import BBDD
 
@@ -62,7 +62,16 @@ class Solicitante_galeria(Frame):
         self.config(bg="white")
 
         self.CerrarSesion = Button(self, text="Cerrar sesión", font=Font(family="Roboto Cn", size=10), command=self.cerrarSesion)
-        self.CerrarSesion.place(x=650, y=25, width=110, height=40)
+        self.CerrarSesion.place(x=650, y=25, width=90, height=30)
 
         self.solicitar = Button(self, text="Solicitar", font=Font(family="Roboto Cn", size=10), command=self.solicitar)
-        self.solicitar.place(x=500, y=25, width=110, height=40)
+        self.solicitar.place(x=510, y=25, width=90, height=35)
+
+        self.anterior = Button(self, text="Anterior", font=Font(family="Roboto Cn", size=14))
+        self.anterior.place(x=70, y=85, width=100, height=40)
+
+        self.siguiente = Button(self, text="Siguiente", font=Font(family="Roboto Cn", size=14))
+        self.siguiente.place(x=640, y=85, width=100, height=40)
+
+        self.label_imagen = Label(self, bg="red")
+        self.label_imagen.place(x=80, y=155, width=650 ,height=300)

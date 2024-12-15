@@ -1,6 +1,5 @@
 import importlib
-import os
-from tkinter import Button, Label, PhotoImage, Tk, Frame, filedialog, messagebox
+from tkinter import Button, Label, Tk, Frame, filedialog, messagebox
 from tkinter.font import Font
 from PIL import Image, ImageTk
 import xml.etree.ElementTree as et
@@ -107,7 +106,7 @@ class Administrador(Frame):
                 messagebox.showerror(title='Error', message='Ocurrió un error al leer el archivo')
 
     def verSolicitantes(self):
-        if BBDD.listaSolicitantes.tamanio == 0:
+        if len(BBDD.listaSolicitantes) == 0:
             messagebox.showerror(title='Error', message='No existen solicitantes para mostrar')
         else:
             BBDD.listaSolicitantes.graficar()
@@ -119,7 +118,7 @@ class Administrador(Frame):
             self.label_reporte.place(x=220, y=130)
 
     def verArtistas(self):
-        if BBDD.listaArtistas.tamanio == 0:
+        if len(BBDD.listaArtistas) == 0:
             messagebox.showerror(title='Error', message='No existen artistas para mostrar')
         else:
             BBDD.listaArtistas.graficar()
