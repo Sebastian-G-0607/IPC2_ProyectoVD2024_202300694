@@ -1,4 +1,5 @@
 from UsuarioPadre.Usuario import Usuario
+from Artistas.listaC_artista.listaCircularArtista import ListaCircular
 
 class Artista(Usuario):
     def __init__(self, id, pwd, nombre, correo, numero, especialidades, notas):
@@ -6,6 +7,7 @@ class Artista(Usuario):
         self.numero = numero
         self.especialidades = especialidades
         self.notas = notas
+        self.imagenes_procesadas = ListaCircular()
 
     def __str__(self):
         return f'ID: {self.id}\\n' \

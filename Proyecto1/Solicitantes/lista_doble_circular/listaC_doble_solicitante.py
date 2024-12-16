@@ -1,4 +1,4 @@
-from Solicitantes.lista_doble_circular import nodo_doble_solicitante
+from Solicitantes.lista_doble_circular.nodo_doble_solicitante import nodo_doble
 import os
 
 class Lista_doble_circular:
@@ -10,8 +10,11 @@ class Lista_doble_circular:
     def __len__(self):
         return self.tamanio
     
+    def getPrimero(self):
+        return self.primero
+    
     def insertar(self, dato):
-        nuevo = nodo_doble_solicitante(dato)
+        nuevo = nodo_doble(dato)
 
         if self.primero == None and self.ultimo == None:
             self.primero = nuevo
@@ -52,7 +55,7 @@ class Lista_doble_circular:
             actual = actual.siguiente
             contador+= 1
         
-    def graficar(self):
+    def graficar(self, id_logueado):
         codigo_dot = ''
         codigo_dot += '''digraph G {
     rankdir=LR;
@@ -76,14 +79,21 @@ class Lista_doble_circular:
 
         codigo_dot += '}'
 
-        ruta_dot = 'reportesdot/listaDobleCircular.dot'
+        ruta_dot = 'Proyecto1/codigosdot/Lista_Doble_' + id_logueado + '.dot'
+
         archivo = open(ruta_dot,'w')
         archivo.write(codigo_dot)
         archivo.close()
 
-        ruta_imagen = 'reportes/listaDobleCircular.jpg'
-        comando = 'dot -Tjpg '+ ruta_dot + ' -o '+ ruta_imagen
+        ruta_imagen = 'Proyecto1/Reportes/Lista_Doble_' + id_logueado + '.png'
+        comando = 'dot -Tpng '+ ruta_dot + ' -o '+ ruta_imagen
         os.system(comando)
 
-        ruta_abrir_imagen = os.path.abspath(ruta_imagen)
-        os.startfile(ruta_abrir_imagen)
+        ruta_imagensvg = "Proyecto1/Reportes/Lista_Doble_" + id_logueado + '.svg'
+
+        comandosvg = 'dot -Tsvg '+ ruta_dot + ' -o ' + ruta_imagensvg
+
+        os.system(comandosvg)
+
+        abrir_svg = os.path.abspath(ruta_imagensvg)
+        os.startfile(abrir_svg)

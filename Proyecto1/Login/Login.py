@@ -1,6 +1,7 @@
 from tkinter import Tk, Button, Label, Entry, messagebox, Frame
 from Modulo_admin.moduloAdmin import Administrador
 from Modulo_solicitante.moduloSolicitante import Solicitante
+from Modulo_artista.moduloArtista import Artista
 from BBDD import BBDD
 
 class Login(Frame):
@@ -60,8 +61,8 @@ class Login(Frame):
             self.master.destroy()
             root = Tk()
 
-            ancho_ventana = 600
-            alto_ventana = 200
+            ancho_ventana = 800
+            alto_ventana = 500
 
             x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
             y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
@@ -71,7 +72,7 @@ class Login(Frame):
             root.geometry(posicion)
 
             root.wm_title("Artista " + BBDD.usuario_en_sesion)
-            moduloSolicitante = Solicitante(root)
+            moduloArtista = Artista(root)
 
         else:
             messagebox.showerror(message="El usuario o la contraseña son incorrectos, vuelva a intentar", title="Error")

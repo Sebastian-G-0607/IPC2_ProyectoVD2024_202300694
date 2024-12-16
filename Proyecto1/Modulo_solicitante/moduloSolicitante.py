@@ -60,22 +60,25 @@ class Solicitante(Frame):
         app = Solicitante_solicitar(root)
 
     def ver_galeria(self):
-        self.master.destroy()
+        if len(BBDD.listaSolicitantes.buscar(BBDD.usuario_en_sesion).galeria) == 0:
+            messagebox.showerror(title="Error", message="No existen imágenes en la galería, inténtelo más tarde")
+        else:
+            self.master.destroy()
 
-        root = Tk()
+            root = Tk()
 
-        ancho_ventana = 800
-        alto_ventana = 500
+            ancho_ventana = 800
+            alto_ventana = 500
 
-        x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
-        y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
+            x_ventana = root.winfo_screenwidth() // 2 - ancho_ventana // 2
+            y_ventana = root.winfo_screenheight() // 2 - alto_ventana // 2
 
-        posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
+            posicion = str(ancho_ventana) + "x" + str(alto_ventana) + "+" + str(x_ventana) + "+" + str(y_ventana)
 
-        root.geometry(posicion)
+            root.geometry(posicion)
 
-        root.wm_title("Solicitante " + BBDD.usuario_en_sesion + " - Ver galería")
-        app = Solicitante_galeria(root)
+            root.wm_title("Solicitante " + BBDD.usuario_en_sesion + " - Ver galería")
+            app = Solicitante_galeria(root)
 
     def create_widgets(self):
 

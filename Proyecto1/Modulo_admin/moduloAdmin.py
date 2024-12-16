@@ -24,7 +24,7 @@ class Administrador(Frame):
     def cargarArtistas(self):
         ruta = self.leerArchivo()
         if ruta == '' or ruta == None:
-            messagebox.showerror(title='Advertencia', message='Seleccione un archivo XML')
+            pass
         else:
             try:
                 arbol = et.parse(ruta)
@@ -55,9 +55,7 @@ class Administrador(Frame):
 
                         nuevoArtista = Artista(id, pwd, nombre, correo, numero, especialidades, notas)
                         BBDD.listaArtistas.insertar(nuevoArtista)
-
-                    print("Recorriendo artistas")
-                    BBDD.listaArtistas.recorrer()
+                    messagebox.showinfo(title="Archivo cargado", message="El archivo de artistas fue cargado exitosamente")
 
                 else:
                     messagebox.showerror(title='Advertencia', message='El formato del archivo no es válido')
@@ -68,7 +66,7 @@ class Administrador(Frame):
     def cargarSolicitantes(self):
         ruta = self.leerArchivo()
         if ruta == '' or ruta == None:
-            messagebox.showerror(title='Advertencia', message='Seleccione un archivo XML')
+            pass
         else:
             try:
                 arbol = et.parse(ruta)
@@ -96,10 +94,7 @@ class Administrador(Frame):
                         
                         nuevoSolicitante = Solicitante(id, password, nombre, correo, numero, direccion)
                         BBDD.listaSolicitantes.insertar(nuevoSolicitante)
-
-                    print("Recorriendo solicitantes")
-                    BBDD.listaSolicitantes.recorrer()
-
+                    messagebox.showinfo(title="Archivo cargado", message="El archivo de solicitantes fue cargado exitosamente")
                 else:
                     messagebox.showerror(title='Advertencia', message='El formato del archivo no es válido')
             except:
@@ -107,7 +102,7 @@ class Administrador(Frame):
 
     def verSolicitantes(self):
         if len(BBDD.listaSolicitantes) == 0:
-            messagebox.showerror(title='Error', message='No existen solicitantes para mostrar')
+            messagebox.showerror(title='Avertencia', message='No existen solicitantes para mostrar')
         else:
             BBDD.listaSolicitantes.graficar()
             img = Image.open("Proyecto1/Reportes/ListaSolicitantes.png")
@@ -119,7 +114,7 @@ class Administrador(Frame):
 
     def verArtistas(self):
         if len(BBDD.listaArtistas) == 0:
-            messagebox.showerror(title='Error', message='No existen artistas para mostrar')
+            messagebox.showerror(title='Advertencia', message='No existen artistas para mostrar')
         else:
             BBDD.listaArtistas.graficar()
             img = Image.open("Proyecto1/Reportes/ListaArtistas.png")

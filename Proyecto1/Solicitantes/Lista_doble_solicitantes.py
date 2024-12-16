@@ -11,15 +11,16 @@ class Lista_solicitantes:
         return self.tamanio
 
     def insertar(self, dato):
-        nuevoNodo = nodo_doble(dato)
-        if self.primero == None and self.ultimo == None:
-            self.primero = nuevoNodo
-            self.ultimo = nuevoNodo
-        else:
-            self.ultimo.siguiente = nuevoNodo
-            nuevoNodo.anterior = self.ultimo
-            self.ultimo = nuevoNodo
-        self.tamanio+=1
+        if self.buscar(dato.id) == None:
+            nuevoNodo = nodo_doble(dato)
+            if self.primero == None and self.ultimo == None:
+                self.primero = nuevoNodo
+                self.ultimo = nuevoNodo
+            else:
+                self.ultimo.siguiente = nuevoNodo
+                nuevoNodo.anterior = self.ultimo
+                self.ultimo = nuevoNodo
+            self.tamanio+=1
 
     def recorrer(self):
         actual = self.primero
@@ -33,6 +34,7 @@ class Lista_solicitantes:
             if actual.dato.id == valor:
                 return actual.dato
             actual = actual.siguiente
+        return None
 
     def iniciarSesion(self, user, password):
         actual = self.primero

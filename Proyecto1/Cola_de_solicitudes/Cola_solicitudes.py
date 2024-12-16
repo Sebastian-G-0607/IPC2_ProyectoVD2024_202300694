@@ -5,6 +5,9 @@ class Cola_solicitudes:
     def __init__(self):
         self.primero = None
         self.tamanio = 0
+        
+    def __len__(self):
+        return self.tamanio
 
     def enqueue(self, dato):
         nuevoNodo = nodo_cola(dato)
@@ -27,6 +30,11 @@ class Cola_solicitudes:
             self.primero = self.primero.siguiente
             self.tamanio-=1
             return eliminado
+        
+    def getPrimero(self):
+        if self.primero == None:
+            return None
+        return self.primero.dato
 
     def graficar(self):
         codigo_archivo_dot = ''
