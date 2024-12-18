@@ -1,0 +1,32 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+            nodo1[label="{<f1>|ID: IPC-001\nPassword: 1234\nNombre: Juan Antonio Perez Silva\nCorreo: juanperez@gmail.com\nNumero: 3436 3436\nDirección: Guatemala, ciudad de Guatemala\n|<f2>}"];
+nodo2[label="{<f1>|ID: IPC-002\nPassword: 5678\nNombre: Maria Fernanda LÃ³pez GÃ³mez\nCorreo: maria.lopez@gmail.com\nNumero: 1234 5678\nDirección: Antigua Guatemala, SacatepÃ©quez\n|<f2>}"];
+nodo3[label="{<f1>|ID: IPC-003\nPassword: 9101\nNombre: Carlos Alberto MÃ©ndez RamÃ­rez\nCorreo: carlos.mendez@hotmail.com\nNumero: 8765 4321\nDirección: Escuintla, Guatemala\n|<f2>}"];
+nodo4[label="{<f1>|ID: IPC-004\nPassword: 1121\nNombre: Daniela Margarita Santos Cruz\nCorreo: daniela.santos@yahoo.com\nNumero: 9988 7766\nDirección: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo5[label="{<f1>|ID: IPC-005\nPassword: 3141\nNombre: JosÃ© Manuel Castillo PÃ©rez\nCorreo: jose.castillo@outlook.com\nNumero: 5432 2109\nDirección: Chiquimula, Guatemala\n|<f2>}"];
+nodo6[label="{<f1>|ID: IPC-006\nPassword: 6958\nNombre: Diego Torres\nCorreo: diego.torres@example.com\nNumero: 80134227\nDirección: Escuintla, Guatemala\n|<f2>}"];
+nodo7[label="{<f1>|ID: IPC-007\nPassword: 8701\nNombre: Carlos Ruiz\nCorreo: carlos.ruiz@example.com\nNumero: 27595614\nDirección: CobÃ¡n, Guatemala\n|<f2>}"];
+nodo8[label="{<f1>|ID: IPC-008\nPassword: 4912\nNombre: Diego Torres\nCorreo: diego.torres@correo.com\nNumero: 17208214\nDirección: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo9[label="{<f1>|ID: IPC-009\nPassword: 3328\nNombre: Luis HernÃ¡ndez\nCorreo: luis.hernÃ¡ndez@correo.com\nNumero: 65184529\nDirección: Escuintla, Guatemala\n|<f2>}"];
+nodo10[label="{<f1>|ID: IPC-010\nPassword: 3777\nNombre: Diego Torres\nCorreo: diego.torres@example.com\nNumero: 47860837\nDirección: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo1:f2 -> nodo2:f1;
+nodo2:f1 -> nodo1:f2;
+nodo2:f2 -> nodo3:f1;
+nodo3:f1 -> nodo2:f2;
+nodo3:f2 -> nodo4:f1;
+nodo4:f1 -> nodo3:f2;
+nodo4:f2 -> nodo5:f1;
+nodo5:f1 -> nodo4:f2;
+nodo5:f2 -> nodo6:f1;
+nodo6:f1 -> nodo5:f2;
+nodo6:f2 -> nodo7:f1;
+nodo7:f1 -> nodo6:f2;
+nodo7:f2 -> nodo8:f1;
+nodo8:f1 -> nodo7:f2;
+nodo8:f2 -> nodo9:f1;
+nodo9:f1 -> nodo8:f2;
+nodo9:f2 -> nodo10:f1;
+nodo10:f1 -> nodo9:f2;
+}

@@ -1,0 +1,5 @@
+digraph G {
+    rankdir=LR;
+    node[shape=Mrecord];
+    Pila[xlabel="Pila" label="ID de solicitante: IPC-002\nID de imagen: 2\nNombre de la figura: Capibara\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos prueba/capibara.xml\n|ID de solicitante: IPC-002\nID de imagen: 1\nNombre de la figura: Rana naranja\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos prueba/rana - copia.xml\n|ID de solicitante: IPC-002\nID de imagen: 3\nNombre de la figura: Rana\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos prueba/rana.xml\n"];
+}

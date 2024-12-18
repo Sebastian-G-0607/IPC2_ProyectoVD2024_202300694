@@ -4,8 +4,7 @@ from Solicitantes.lista_doble_circular.listaC_doble_solicitante import Lista_dob
 
 class Solicitante(Usuario):
     def __init__(self, id, pwd, nombre, correo, numero, direccion):
-        super().__init__(id, pwd, nombre, correo)
-        self.numero = numero
+        super().__init__(id, pwd, nombre, correo, numero)
         self.direccion = direccion
         self.pilaUsuario = pila_solicitante()
         self.galeria = Lista_doble_circular()

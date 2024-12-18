@@ -41,6 +41,8 @@ class Solicitante_solicitar(Frame):
                     nuevaImagen = Imagen(BBDD.usuario_en_sesion, id, nombre, ruta.name)
                     BBDD.listaSolicitantes.buscar(BBDD.usuario_en_sesion).pilaUsuario.push(nuevaImagen)
                     messagebox.showinfo(title="Archivo cargado", message="El archivo de diseño fue cargado exitosamente")
+                else:
+                    messagebox.showerror(title="Error", message="El archivo XML no contiene un diseño válido")
             except:
                 messagebox.showerror(title="Error", message="Ocurrió un error al cargar el archivo")
 

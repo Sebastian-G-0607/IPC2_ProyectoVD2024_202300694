@@ -3,8 +3,7 @@ from Artistas.listaC_artista.listaCircularArtista import ListaCircular
 
 class Artista(Usuario):
     def __init__(self, id, pwd, nombre, correo, numero, especialidades, notas):
-        super().__init__(id, pwd, nombre, correo)
-        self.numero = numero
+        super().__init__(id, pwd, nombre, correo, numero)
         self.especialidades = especialidades
         self.notas = notas
         self.imagenes_procesadas = ListaCircular()

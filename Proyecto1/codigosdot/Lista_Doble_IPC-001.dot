@@ -1,0 +1,6 @@
+digraph G {
+    rankdir=LR;
+    node[shape=record, height=.1]
+    nodo0[label="{<f1>|ID de solicitante: IPC-001\nID de imagen: 5\nNombre de la figura: Mario\nRuta de la imagen: Proyecto1/Reportes/Matriz_5.png\n|<f2>}"];
+nodo0:f1 -> nodo0:f2 [dir=both constraint=false];
+}
