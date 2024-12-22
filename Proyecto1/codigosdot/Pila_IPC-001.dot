@@ -1,5 +1,5 @@
 digraph G {
     rankdir=LR;
     node[shape=Mrecord];
-    Pila[xlabel="Pila" label="ID de solicitante: IPC-001\nID de imagen: 5\nNombre de la figura: IronMan\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos de prueba/ironman.xml\n|ID de solicitante: IPC-001\nID de imagen: 3\nNombre de la figura: Rana\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos de prueba/rana.xml\n"];
+    Pila[xlabel="Pila" label="ID de solicitante: IPC-001\nID de imagen: 5\nNombre de la figura: IronMan\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos de prueba/ironman.xml\n|ID de solicitante: IPC-001\nID de imagen: 2\nNombre de la figura: Capibara\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos de prueba/capibara.xml\n|ID de solicitante: IPC-001\nID de imagen: 4\nNombre de la figura: Amongus\nRuta de la imagen: C:/Users/sebas/Documentos/Vacaciones de diciembre 2024/Archivos de prueba/amongus.xml\n"];
 }
