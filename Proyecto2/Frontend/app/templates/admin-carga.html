@@ -1,0 +1,38 @@
+{% extends 'admin.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin-carga.css' %}">
+<div class="admin-carga">
+    <h1>Carga Masiva</h1>
+    <div class="contenedor-botones">
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="/admin/carga-masiva-xml/"
+        >
+            {% csrf_token %}
+            <label for="archivo" class="boton1">
+                Subir archivo XML
+            </label>
+            <input type="file" id="archivo" name="archivo" accept="text/xml" class="hidden">
+            <button type="submit" class="boton2">Ver archivo</button>
+        </form>
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="/admin/carga-masiva-enviar/"
+        >
+        {% csrf_token %}
+            <button class="boton3">Guardar cambios</button>
+        </form>
+    </div>
+    <div class="contenedor-xml">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+        {% if contenido %}
+            <textarea class="textarea" placeholder="XML a cargar" readonly>{{contenido}}</textarea>
+        {% else %}
+            <textarea class="textarea" placeholder="XML a cargar" readonly></textarea>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
