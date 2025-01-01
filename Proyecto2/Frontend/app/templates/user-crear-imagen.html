@@ -1,0 +1,49 @@
+{% extends "user.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user-crear-imagen.css' %}">
+<div class="upload-section">
+    <h1>Crear Diseño</h1>
+    
+    <div class="grupo-botones">
+        <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="/user/cargar-imagen-xml/"
+        >
+        {% csrf_token %}
+            <label for="archivo" class="boton">Subir Archivo</label>
+            <input type="file" id="archivo" name="archivo" accept="text/xml" class="hidden" style="display: none;">
+            <button type="submit" class="boton">Ver Archivo</button>
+        </form>
+        <form
+        method="POST"
+        enctype="multipart/form-data"
+        action="/user/enviar-imagen-xml/"
+        >
+        {% csrf_token %}
+            <button class="boton">Cargar Diseño</button>
+        </form>
+    </div>
+
+    <div class="contenido">
+        <div class="seccion-xml">
+            <div class="seccion-titulo">XML del Diseño</div>
+            {% if contenido %}
+                <textarea class="editor-xml" spellcheck="false" readonly>{{contenido}}</textarea>
+            {% else %}
+                <textarea class="editor-xml" spellcheck="false" readonly></textarea>
+            {% endif %}
+        </div>
+
+        <div class="previsualizar">
+            <div class="seccion-titulo">Imagen resultante</div>
+            <div class="preview-area">
+            {% if imagen %}
+                <img class="preview-area" src="data:image/svg+xml;base64,{{imagen}}" alt="Graphviz">
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

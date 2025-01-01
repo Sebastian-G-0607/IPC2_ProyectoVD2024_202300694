@@ -6,3 +6,6 @@ class LoginForm(forms.Form):
 
 class XMLForm(forms.Form):
     archivo = forms.FileField(label='archivo')
+
+class TextForm(forms.Form):
+    textid = forms.CharField(label='textid')

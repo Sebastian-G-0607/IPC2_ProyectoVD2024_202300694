@@ -1,8 +1,11 @@
 import os
+import re
 import xml.etree.ElementTree as ET
 
 from flask import Blueprint, request, jsonify
 from model.solicitante import Solicitante
+from model.imagen_modelo import Imagen_M
+from controllers.imagen import	leerXML_Imagenes
 
 Usuario = Blueprint('usuarios', __name__)
 
@@ -10,6 +13,10 @@ Usuario = Blueprint('usuarios', __name__)
 def cargarUsuarios():
     usuarios = leerXML()
     try:
+        regex_correo = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        regex_id = r'^IPC-\w+$'
+        regex_numero = r'^\d{8}$'
+
         xml_usuarios = request.data.decode('UTF-8')
         if xml_usuarios == '':
             return jsonify({
@@ -20,6 +27,11 @@ def cargarUsuarios():
             root = ET.fromstring(xml_usuarios)
             for usuario in root:
                 id = usuario.attrib['id']
+
+                if re.match(regex_id, id) is None:
+                    print(id + " - ID no válido")
+                    continue
+
                 password = usuario.attrib['pwd']
                 if buscarUsuario(usuarios, id):
                     continue
@@ -40,8 +52,18 @@ def cargarUsuarios():
                             direccion = caracteristica.text
                         case 'perfil':
                             perfil = caracteristica.text
+
+                if re.match(regex_correo, correo) is None:
+                    print(correo + " - correo no válido")
+                    continue
+
+                if re.match(regex_numero, numero) is None:
+                    print(numero + " - número no válido")
+                    continue
+
                 nuevoUsuario = Solicitante(id, password, nombre, correo, numero, direccion, perfil)
                 usuarios.append(nuevoUsuario)
+
             escribirXML(usuarios)
             return jsonify({
                 "document": "Read",
@@ -81,14 +103,25 @@ def getUsuarios():
 @Usuario.route('/usuarios/xml', methods=['GET'])
 def getUsuariosXML():
     try:
+        lista_imagenes = leerXML_Imagenes()
         lista_usuarios = leerXML()
         tree = ET.Element('solicitantes')
+
         for usuario in lista_usuarios:
+            usuario: Solicitante
+            #Recorremos la lista de imágenes y vemos cuáles ha agregado o editado el usuario
+            imagenes_usuario = []
+            for imagen in lista_imagenes:
+                imagen: Imagen_M
+                if imagen.id_usuario == usuario.id:
+                    imagenes_usuario.append(imagen)
+
             #2. Creamos un elemento usuario
-            usuario_xml = ET.SubElement(tree, 'solicitante', id=usuario.id, pwd=usuario.pwd)
+            usuario_xml = ET.SubElement(tree, 'solicitante', id=usuario.id, pwd=usuario.password)
             #3. Creamos los elementos hijos
             nombre = ET.SubElement(usuario_xml, 'NombreCompleto')
             nombre.text = usuario.nombre
+            
             correo = ET.SubElement(usuario_xml, 'CorreoElectronico')
             correo.text = usuario.correo
             telefono = ET.SubElement(usuario_xml, 'NumeroTelefono')
@@ -97,11 +130,21 @@ def getUsuariosXML():
             direccion.text = usuario.direccion
             perfil = ET.SubElement(usuario_xml, 'perfil')
             perfil.text = usuario.perfil
-            # imagenes = ET.SubElement(usuario_xml, 'imagenes')
-        
+            
+            #lista de imagenes de cada usuario
+            imagenes = ET.SubElement(usuario_xml, 'imagenes')
+
+            for imagen_user in imagenes_usuario:
+                nueva_imagen = ET.SubElement(imagenes, 'imagen', id=str(imagen_user.id), editado=str(imagen_user.editado))
+                nombre = ET.SubElement(nueva_imagen, 'nombre')
+                nombre.text = imagen_user.nombre
+
         ET.indent(tree, space='\t', level=0)
-        xml_str = ET.tostring(tree, encoding='utf-8', xml_declaration=True)
-        return xml_str
+        xml_str = ET.tostring(tree, encoding='UTF-8', xml_declaration=True).decode("UTF-8")
+        return jsonify({
+            "users": xml_str,
+            "status": 200
+        }), 200
     except:
         return jsonify({
             "message": "Internal server error",
@@ -141,6 +184,79 @@ def login():
             'rol': 0,
             'status': 400
         }), 400
+    
+@Usuario.route('/usuarios/estadistica/editadas', methods=['GET'])
+def editadas():
+    try:
+        #se carga la lista de imagenes
+        lista_imagenes = leerXML_Imagenes()
+
+        #se crea una lista de diccionarios { "id": id_del_usuario, "cantidad": cantidad_de_imagenes}
+        lista_ids_usuarios = []
+        #se crea una lista que va a registrar todos los id's que han cargado o editado imágenes
+        lista_ids = []
+        for imagen in lista_imagenes:
+            imagen: Imagen_M
+            if imagen.id_usuario in lista_ids: #se verifica que no se repitan los id's
+                continue
+            else:
+                lista_ids.append(imagen.id_usuario)
+                lista_ids_usuarios.append({"id": imagen.id_usuario, "cantidad": 0}) #se crea el diccionario con cantidad 0 inicial
+            
+        for dict in lista_ids_usuarios: #se recorre la lista de diccionarios
+            for imagen in lista_imagenes: #se recorre la lista de imágenes para comparar cuantas ha cargado el usuario
+                if imagen.id_usuario == dict['id'] and imagen.editado == True: 
+                    dict['cantidad'] += 1
+
+        #se crea otra lista en orden descendente según la cantidad de imágenes cargadas
+        ordenados = sorted(lista_ids_usuarios, key=lambda x:x['cantidad'], reverse=True)
+
+        return jsonify({
+            "top": ordenados, 
+            "status": 200
+        }), 200
+    except:
+        return jsonify({
+            "status": 500,
+            "message": "Internal server error"
+        }), 500
+
+
+@Usuario.route('/usuarios/estadistica/cargadas', methods=['GET'])
+def cargadas():
+    try:
+        #se carga la lista de imagenes
+        lista_imagenes = leerXML_Imagenes()
+
+        #se crea una lista de diccionarios { "id": id_del_usuario, "cantidad": cantidad_de_imagenes}
+        lista_ids_usuarios = []
+        #se crea una lista que va a registrar todos los id's que han cargado o editado imágenes
+        lista_ids = []
+        for imagen in lista_imagenes:
+            imagen: Imagen_M
+            if imagen.id_usuario in lista_ids: #se verifica que no se repitan los id's
+                continue
+            else:
+                lista_ids.append(imagen.id_usuario)
+                lista_ids_usuarios.append({"id": imagen.id_usuario, "cantidad": 0}) #se crea el diccionario con cantidad 0 inicial
+            
+        for dict in lista_ids_usuarios: #se recorre la lista de diccionarios
+            for imagen in lista_imagenes: #se recorre la lista de imágenes para comparar cuantas ha cargado el usuario
+                if imagen.id_usuario == dict['id'] and imagen.editado == False: 
+                    dict['cantidad'] += 1
+
+        #se crea otra lista en orden descendente según la cantidad de imágenes cargadas
+        ordenados = sorted(lista_ids_usuarios, key=lambda x:x['cantidad'], reverse=True)
+
+        return jsonify({
+            "top": ordenados[0:3], 
+            "status": 200
+        }), 200
+    except:
+        return jsonify({
+            "status": 500,
+            "message": "Internal server error"
+        }), 500
 
 #FUNCIÓN QUE ESCRIBE LOS DATOS EN EL ARCHIVO XML Y LO GUARDA COMO BASE DE DATOS
 def escribirXML(lista_usuarios): #SE LE PASA UNA LISTA, QUE ES LA QUE SE OBTIENE AL CARGAR UN XML CON NUEVOS USUARIOS

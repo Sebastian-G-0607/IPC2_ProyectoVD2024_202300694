@@ -1,0 +1,56 @@
+/* Sección principal de la galería */
+.ver-galeria {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.ver-galeria h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Grid de las imágenes */
+.imagen-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Marco de cada imagen */
+.frame-imagen {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    background-color: #f9f9f9;
+}
+
+/* Contenedor de la imagen */
+.imagen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: #eaeaea;
+}
+
+/* Contenido de la imagen */
+.contenido-imagen {
+    padding: 10px;
+    text-align: left;
+}
+
+.descripcion-imagen {
+    font-size: 0.9em;
+    color: #555;
+    margin: 5px 0;
+}
+
+.atributo-imagen {
+    font-weight: bold;
+    color: #333;
+}

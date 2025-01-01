@@ -1,0 +1,30 @@
+{% extends "user.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user-ayuda.css' %}">
+<div class="seccion-ayuda">
+    <h1>Ayuda</h1>
+    
+    <div class="seccion-informacion">
+        <h2>Hecho por:</h2>
+        <div class="contenido-informacion">
+            <div><strong>Estudiante: </strong> Eduardo Sebastian Gutierrez Felipe</div>
+            <div><strong>Carnet: </strong> 202300694</div>
+            <div><strong>Curso: </strong> Introducción a la Programación y Computación 2</div>
+            <div><strong>Periodo: </strong> Vacaciones de diciembre 2024</div>
+            <div><strong>Github: </strong> <a href="https://github.com/Sebastian-G-0607">Sebastian-G-0607</a></div>
+        </div>
+    </div>
+
+    <div class="seccion-documentacion">
+        <h2>Programa de Laboratorio</h2>
+        <div class="contenido-documentacion">
+            <embed 
+                src="{% static 'files/Documentacion.pdf' %}"
+                type="application/pdf"
+                class="pdf-viewer"
+            />
+        </div>
+    </div>
+</div>
+{% endblock %}

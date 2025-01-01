@@ -4,8 +4,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin-ver-xml.css' %}">
 <div class="xml-section">
     <h1>XML de Usuarios</h1>
-    {% if contenido_xml %}
-        <textarea class="xml-editor" spellcheck="false" readonly>{{contenido_xml}}</textarea>
+    {% if usuarios %}
+        <textarea class="xml-editor" spellcheck="false" readonly>{{usuarios}}</textarea>
     {% else %}
         <textarea class="xml-editor" spellcheck="false" readonly></textarea>
     {% endif %}

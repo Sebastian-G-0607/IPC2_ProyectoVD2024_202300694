@@ -17,31 +17,31 @@
             <nav class="menu">
                 <ul>
                     <li>
-                        <a href="">
+                        <a href="{% url 'userVerImagenes' %}">
                             <img width="64" height="64" src="https://img.icons8.com/external-others-iconmarket/64/external-galery-navigation-others-iconmarket-3.png" alt="external-galery-navigation-others-iconmarket-3"/>
                             Galería
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{% url 'userCrearImg' %}">
                             <img width="24" height="24" src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/external-upload-networking-tanah-basah-basic-outline-tanah-basah-2.png" alt="external-upload-networking-tanah-basah-basic-outline-tanah-basah-2"/>
                             Cargar Imagen
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{% url 'userEditarImg' %}">
                             <img width="128" height="128" src="https://img.icons8.com/pastel-glyph/128/edit--v1.png" alt="edit--v1"/>
                             Editor de imágenes
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img width="50" height="50" src="https://img.icons8.com/ios/50/help--v1.png" alt="help--v1"/>a
+                        <a href="{% url 'userAyuda' %}">
+                            <img width="50" height="50" src="https://img.icons8.com/ios/50/help--v1.png" alt="help--v1"/>
                             Ayuda
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{% url 'cerrarSesion' %}">
                             <img src="https://img.icons8.com/ios-filled/50/000000/shutdown.png" alt="Cerrar Sesión Icon">
                             Cerrar sesión
                         </a>
@@ -50,6 +50,7 @@
             </nav>
         </aside>
         <main class="content">
+            {% block content %}{% endblock %}
         </main>
     </div>
 </body>

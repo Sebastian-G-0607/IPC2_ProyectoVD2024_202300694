@@ -1,0 +1,31 @@
+{% extends "user.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/user-ver-galeria.css' %}">
+<div class="ver-galeria">
+    <h1>Galería de IPC-Art Studio</h1>
+    <div class="imagen-grid">
+        {% if imagenes %}
+            {% for imagen in imagenes %}
+                <div class="frame-imagen">
+                    <div class="imagen">
+                        <img src="data:image/svg+xml;base64,{{imagen.imagen}}"/>
+                    </div>
+                    <div class="contenido-imagen">
+                        <p class="descripcion-imagen">
+                            <span class="atributo-imagen">ID: </span>{{imagen.id}}
+                        </p>
+                        <p class="descripcion-imagen">
+                            <span class="atributo-imagen">Nombre: </span>{{imagen.nombre}}
+                        </p>
+                        <p class="descripcion-imagen">
+                            <span class="atributo-imagen">Por: </span>{{imagen.id_usuario}}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

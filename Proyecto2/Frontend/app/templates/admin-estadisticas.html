@@ -1,0 +1,24 @@
+{% extends "admin.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin-estadisticas.css' %}">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div class="stats-section">
+    <h1 style="margin-bottom:3%">Estadísticas</h1>
+    
+    <div class="seccion-grafica">
+        <h2>Top 3 de usuarios con más imágenes cargadas</h2>
+        <div class="top-usuarios">
+            {{plot_div2|safe}}
+        </div>
+    </div>
+
+    <div class="seccion-grafica">
+        <h2>Imagenes procesadas por usuario</h2>
+        <div class="top-usuarios">
+            {{plot_div|safe}}
+        </div>
+    </div>
+</div>
+{% endblock %}
